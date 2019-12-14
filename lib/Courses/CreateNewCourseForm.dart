@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'Course.dart';
 
 // -------------------Radio list at a Form widget -------------------------------
 enum SingingCharacter { lafayette, jefferson }
@@ -17,6 +18,8 @@ class MyCustomForm extends StatefulWidget {
 // Create a corresponding State class.
 // This class holds data related to the form.
 class MyCustomFormState extends State<MyCustomForm> {
+   var course= new Course();
+
   // Create a global key that uniquely identifies the Form widget
   // and allows validation of the form.
   //
