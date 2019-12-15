@@ -1,0 +1,106 @@
+{
+  "project_info": {
+    "project_number": "258085964336",
+    "firebase_url": "https://coursati.firebaseio.com",
+    "project_id": "coursati",
+    "storage_bucket": "coursati.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:258085964336:android:d75d3f7649ae04d3957bf5",
+        "android_client_info": {
+          "package_name": "com.example.course_monitoring_system_professor_app_fultter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "258085964336-89b25k9pd22lvjqct197kclftpraogo2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.course_monitoring_system_professor_app_fultter",
+            "certificate_hash": "23b293a78e8ccf4108fd2bc167d909c4a4ca0140"
+          }
+        },
+        {
+          "client_id": "258085964336-ic3vapknu4ebac3vsabkfaosnsnkgtk0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLUQy8cT-yr-qtqcSzaAEv74vgp22h5Cs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "258085964336-ic3vapknu4ebac3vsabkfaosnsnkgtk0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:258085964336:android:c2b2e8624546a796957bf5",
+        "android_client_info": {
+          "package_name": "com.example.studentapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "258085964336-ic3vapknu4ebac3vsabkfaosnsnkgtk0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLUQy8cT-yr-qtqcSzaAEv74vgp22h5Cs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "258085964336-ic3vapknu4ebac3vsabkfaosnsnkgtk0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:258085964336:android:f2ea29a3fd500732957bf5",
+        "android_client_info": {
+          "package_name": "com.example.studnet_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "258085964336-ic3vapknu4ebac3vsabkfaosnsnkgtk0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLUQy8cT-yr-qtqcSzaAEv74vgp22h5Cs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "258085964336-ic3vapknu4ebac3vsabkfaosnsnkgtk0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
