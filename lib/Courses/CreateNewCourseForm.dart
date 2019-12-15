@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 import 'Course.dart';
+import 'Major.dart';
 
-// -------------------Radio list at a Form widget -------------------------------
-enum SingingCharacter { lafayette, jefferson }
 
-SingingCharacter _character = SingingCharacter.lafayette;
-
-// --------------------------------------------------
 // Create a Form widget.
 class MyCustomForm extends StatefulWidget {
   @override
@@ -18,7 +14,41 @@ class MyCustomForm extends StatefulWidget {
 // Create a corresponding State class.
 // This class holds data related to the form.
 class MyCustomFormState extends State<MyCustomForm> {
-   var course= new Course();
+  
+  
+  var course = new Course();
+
+  // ====================== DropdownMenuItem =========================
+    List<Major> _majors = Major.getMajors();
+  List<DropdownMenuItem<Major>> _dropdownMenuItems;
+  Major _selectedMajor;
+
+  @override
+  void initState() {
+    _dropdownMenuItems = buildDropdownMenuItems(_majors);
+    _selectedMajor = _dropdownMenuItems[0].value;
+    super.initState();
+  }
+
+  List<DropdownMenuItem<Major>> buildDropdownMenuItems(List companies) {
+    List<DropdownMenuItem<Major>> items = List();
+    for (Major major in companies) {
+      items.add(
+        DropdownMenuItem(
+          value: major,
+          child: Text(major.name),
+        ),
+      );
+    }
+    return items;
+  }
+
+  onChangeDropdownItem(Major selectedMajor) {
+    setState(() {
+      _selectedMajor = selectedMajor;
+    });
+  }
+  // ===============================================
 
   // Create a global key that uniquely identifies the Form widget
   // and allows validation of the form.
@@ -69,34 +99,30 @@ class MyCustomFormState extends State<MyCustomForm> {
               return value.contains('@') ? 'Do not use the @ char.' : null;
             },
           ),
-          Column(
-            children: <Widget>[
-              ListTile(
-                title: const Text('Lafayette'),
-                leading: Radio(
-                  value: SingingCharacter.lafayette,
-                  groupValue: _character,
-                  onChanged: (SingingCharacter value) {
-                    setState(() {
-                      _character = value;
-                    });
-                  },
+          // ---------------- DropdownMenuItem -------------------
+          Container(
+          child: Center(
+            
+            child:
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+               SizedBox(
+                  height: 20.0,
                 ),
-              ),
-              ListTile(
-                title: const Text('Thomas Jefferson'),
-                leading: Radio(
-                  value: SingingCharacter.jefferson,
-                  groupValue: _character,
-                  onChanged: (SingingCharacter value) {
-                    setState(() {
-                      _character = value;
-                    });
-                  },
+                Text("Select a Major"),
+                DropdownButton(
+                  value: _selectedMajor,
+                  items: _dropdownMenuItems,
+                  onChanged: onChangeDropdownItem,
                 ),
-              ),
-            ],
+                Text('Selected: ${_selectedMajor.name}'),
+              ],
+            ),
           ),
+        ),
+          // --------------------------------------
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 16.0),
             child: RaisedButton(
