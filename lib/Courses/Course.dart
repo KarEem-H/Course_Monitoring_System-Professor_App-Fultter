@@ -1,5 +1,4 @@
 
-import 'Major.dart';
 
 class Course{
  String professorName;
