@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'Course.dart';
 import 'Major.dart';
 
-
 // Create a Form widget.
 class MyCustomForm extends StatefulWidget {
   @override
@@ -14,12 +13,10 @@ class MyCustomForm extends StatefulWidget {
 // Create a corresponding State class.
 // This class holds data related to the form.
 class MyCustomFormState extends State<MyCustomForm> {
-  
-  
   var course = new Course();
 
   // ====================== DropdownMenuItem =========================
-    List<Major> _majors = Major.getMajors();
+  List<Major> _majors = Major.getMajors();
   List<DropdownMenuItem<Major>> _dropdownMenuItems;
   Major _selectedMajor;
 
@@ -99,29 +96,75 @@ class MyCustomFormState extends State<MyCustomForm> {
               return value.contains('@') ? 'Do not use the @ char.' : null;
             },
           ),
-          // ---------------- DropdownMenuItem -------------------
-          Container(
-          child: Center(
-            
-            child:
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-               SizedBox(
-                  height: 20.0,
-                ),
-                Text("Select a Major"),
-                DropdownButton(
-                  value: _selectedMajor,
-                  items: _dropdownMenuItems,
-                  onChanged: onChangeDropdownItem,
-                ),
-                Text('Selected: ${_selectedMajor.name}'),
-              ],
+          TextFormField(
+            decoration: const InputDecoration(
+              icon: Icon(Icons.timelapse),
+              hintText: 'a courses Hours',
+              labelText: 'Hours *',
+            ),
+            keyboardType: TextInputType.number,
+            onSaved: (String value) {
+              // This optional block of code can be used to run
+              // code when the user saves the form.
+            },
+            validator: (String value) {
+              if (value.isEmpty) {
+                return 'Please enter a courses description';
+              }
+              return value.contains('@') ? 'Do not use the @ char.' : null;
+            },
+          ),
+          TextFormField(
+            decoration: const InputDecoration(
+              icon: Icon(Icons.people),
+              hintText: 'a  limited number of students',
+              labelText: 'Limited number of students *',
+            ),
+            keyboardType: TextInputType.number,
+            onSaved: (String value) {
+              // This optional block of code can be used to run
+              // code when the user saves the form.
+            },
+            validator: (String value) {
+              if (value.isEmpty) {
+                return 'Please enter a limited number of students';
+              }
+              return value.contains('@') ? 'Do not use the @ char.' : null;
+            },
+          ),
+//------------------------------------------
+          Card(
+            child: Padding(
+              padding: const EdgeInsets.all(9.0),
+              child: Stack(
+                children: <Widget>[
+                  Center(
+                    child: Row(
+                      // crossAxisAlignment: CrossAxisAlignment.center,
+                      // mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Container(
+                          alignment: Alignment.centerLeft,
+                          child: Text('Select Major'),
+                        ),
+                        Spacer(),
+                        DropdownButton(
+                          value: _selectedMajor,
+                          items: _dropdownMenuItems,
+                          onChanged: onChangeDropdownItem,
+                        ),
+                        Spacer(),
+                        Container(
+                          alignment: Alignment.centerLeft,
+                          child: Text('${_selectedMajor.name}'),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
-        ),
           // --------------------------------------
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 16.0),
