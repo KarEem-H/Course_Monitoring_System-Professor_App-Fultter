@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'Course.dart';
 import 'Major.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
+import 'package:path/path.dart';
+import 'dart:async';
 
 // Create a Form widget.
 class MyCustomForm extends StatefulWidget {
@@ -14,6 +19,47 @@ class MyCustomForm extends StatefulWidget {
 // This class holds data related to the form.
 class MyCustomFormState extends State<MyCustomForm> {
   var course = new Course();
+  // ----------------------------------------------------------
+  File image ;
+String URL="";
+
+pickGallery() async{
+
+      File img = await ImagePicker.pickImage(source: ImageSource.gallery);
+    // File img = await ImagePicker.pickImage(source: ImageSource.camera);
+    if(img != null){
+      //image = img;
+      setState(() {
+       image = img;
+       // filename = basename(image.path);
+      });
+    }
+  }
+  pickCamera() async{
+
+    //  File img = await ImagePicker.pickImage(source: ImageSource.gallery);
+    File img = await ImagePicker.pickImage(source: ImageSource.camera);
+      if(img != null){
+      //image = img;
+      setState(() => image = img);
+    }
+  }
+  
+Future uploadPic() async{
+    
+  final String filename = basename(image.path);
+  final FirebaseStorage storage =FirebaseStorage(storageBucket: 'gs://coursati.appspot.com/');
+  // StorageReference reference = FirebaseStorage.instance.ref().child(filename);  
+  StorageReference reference = storage.ref()./*child('giftShopItems').*/child(filename);
+  StorageUploadTask upload = reference.putFile(image);
+
+  var downurl = await (await upload.onComplete).ref.getDownloadURL();
+  setState(() {
+    this.URL = downurl.toString();
+    print(this.URL);
+    print(filename);
+  });   
+}
 
   // ====================== DropdownMenuItem =========================
   List<Major> _majors = Major.getMajors();
@@ -166,6 +212,23 @@ class MyCustomFormState extends State<MyCustomForm> {
             ),
           ),
           // --------------------------------------
+          RaisedButton(
+                  color: Colors.blue,
+                  child: Text(
+                    'Pick From Gallery',
+                    style: TextStyle(color: Colors.white)
+                    ),
+                  onPressed: pickGallery(),
+                ),
+                RaisedButton(
+                  color: Colors.red,
+                  child: Text(
+                    'Pick From Camera',
+                    style: TextStyle(color: Colors.white)
+                    ),
+                  onPressed: pickCamera(),
+                ),
+          // ----------------------------------------
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 16.0),
             child: RaisedButton(
